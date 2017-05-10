@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import uz.shift.colorpicker.LineColorPicker;
+import uz.shift.colorpicker.OnColorChangedListener;
+
 public class MainActivity extends AppCompatActivity {
     TextView txtText1,txtText2;
 
@@ -29,10 +32,24 @@ public class MainActivity extends AppCompatActivity {
 
             //レイアウトXMLからビュー(レイアウト)をインフレート
             final View popupView = inflater.inflate(R.layout.popup, null);
+            final LineColorPicker colorPicker = (LineColorPicker) popupView.findViewById(R.id.colorPicker1);
+
+            // set color palette
+            colorPicker.setColors(new int[] {Color.RED,Color.GREEN,Color.BLUE,Color.YELLOW,Color.CYAN,Color.MAGENTA});
+
+            // set selected color [optional]
+            colorPicker.setSelectedColor(Color.RED);
+
+            // set on change listener
+            colorPicker.setOnColorChangedListener(new OnColorChangedListener() {
+                @Override
+                public void onColorChanged(int c) {
+
+                }
+            });
 
             // テキスト入力用Viewの作成
-            final EditText editView1 = new EditText(MainActivity.this);
-            final EditText editView2 = new EditText(MainActivity.this);
+            final EditText editView1 = (EditText)popupView.findViewById(R.id.editText1);
             AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
             dialog.setTitle("何か入力してください")
                     .setCancelable(true)
@@ -40,25 +57,21 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //OKボタンが押下された時に入力された年月をビューに設定する
-                       //     txtText1.setText(editView1.getText().toString());
-                       //     txtText2.setText(editView2.getText().toString());
-                       //     txtText1.setTextColor(Color.RED);
+                            txtText1.setText(editView1.getText().toString());
+                            // get selected color
+                            int color = colorPicker.getColor();
+                            txtText1.setTextColor(color);
+                        }
+                    })
+                    .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // キャンセルボタンをタップした時の処理をここに記述
                         }
                     })
                     .setView(popupView)
                     .show(); //ダイアログ表示
-
-/*            // キャンセルボタンの設定
-            dialog.setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    // キャンセルボタンをタップした時の処理をここに記述
-                }
-            });
-            dialog.show();*/
         }
-
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

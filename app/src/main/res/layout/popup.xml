@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/linearLayout0"
+<LinearLayout android:id="@+id/linearLayout0"
     android:layout_height="fill_parent"
     android:layout_width="wrap_content"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-            <edittext
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+            <EditText
                 android:id="@+id/editText1"
-                android:layout_height="48dp"
-                android:layout_width="wrap_content">
-</edittext>
-            <edittext
-                android:id="@+id/editText2"
-                android:layout_height="48dp"
-                android:layout_width="wrap_content">
-            </edittext>
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content" />
+    <uz.shift.colorpicker.LineColorPicker
+        android:id="@+id/colorPicker1"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        app:orientation="horizontal"/>
+
 </LinearLayout>
