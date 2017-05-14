@@ -36,3 +36,7 @@ repositories {
         url  "http://dl.bintray.com/dasar/maven"
     }
 }
+// for admob
+dependencies {
+    compile 'com.google.android.gms:play-services:6.+'
+}
