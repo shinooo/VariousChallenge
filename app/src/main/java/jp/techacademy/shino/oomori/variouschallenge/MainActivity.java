@@ -17,11 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
 
 public class MainActivity extends AppCompatActivity {
     TextView txtText1,txtText2;
+    private AdView adView;
 
     private View.OnClickListener mOnTestClickListener = new View.OnClickListener() {
         @Override
@@ -92,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         txtText1 = (TextView) findViewById(R.id.text1);
         txtText2 = (TextView) findViewById(R.id.text2);
         findViewById(R.id.test1).setOnClickListener(mOnTestClickListener);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("DEVICE ID")
+                .build();
     }
 
     @Override
@@ -114,5 +122,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (adView != null) adView.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) adView.resume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (adView != null) adView.destroy();
     }
 }
