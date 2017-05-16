@@ -38,5 +38,5 @@ repositories {
 }
 // for admob
 dependencies {
-    compile 'com.google.android.gms:play-services:6.+'
+    compile 'com.google.android.gms:play-services-ads:10.0.1'
 }

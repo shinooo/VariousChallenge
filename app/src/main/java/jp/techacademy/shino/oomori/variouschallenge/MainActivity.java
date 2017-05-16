@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    /*    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,14 +93,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
+*/
         txtText1 = (TextView) findViewById(R.id.text1);
         txtText2 = (TextView) findViewById(R.id.text2);
         findViewById(R.id.test1).setOnClickListener(mOnTestClickListener);
 
+        // Initialize the Mobile Ads SDK.
+ //       MobileAds.initialize(this, getResources().getString(R.string.banner_ad_unit_id));
+        adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("DEVICE ID")
+ //               .addTestDevice("DEVICE ID")
                 .build();
+        adView.loadAd(adRequest);
+
     }
 
     @Override
