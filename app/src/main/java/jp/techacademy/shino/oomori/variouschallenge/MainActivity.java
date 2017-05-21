@@ -27,6 +27,7 @@ import uz.shift.colorpicker.OnColorChangedListener;
 public class MainActivity extends AppCompatActivity {
     TextView txtText1,txtText2;
     private AdView adView;
+    CustomGridView ctmGridView;
 
     private View.OnClickListener mOnTestClickListener = new View.OnClickListener() {
         @Override
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
  //               .addTestDevice("DEVICE ID")
                 .build();
         adView.loadAd(adRequest);
+
+        ctmGridView = (CustomGridView)findViewById(R.id.ctmGrid);
 
     }
 
